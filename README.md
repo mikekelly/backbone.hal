@@ -35,7 +35,7 @@ var instance = new MyModel({
 instance.url()          // #=> '/example'
 instance.get('prop')    // #=> 'val'
 instance.get('_links')  // #=> undefined
-instance.links          // #=> _links: { self: { href: '/example', }, eg: { href: '/boo' } }
+instance.links          // #=> { self: { href: '/example', }, eg: { href: '/boo' } }
 ```
 
 Source Code
