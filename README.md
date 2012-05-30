@@ -6,7 +6,7 @@ Example Usage
 ============
 ``` javascript
 MyModel = HAL.Model.extend({
-  /* custom properties go here */
+  /* custom mehtods and properties go here */
 });
 
 var instance = new MyModel({
@@ -35,6 +35,7 @@ var instance = new MyModel({
 instance.url()          // #=> '/example'
 instance.get('prop')    // #=> 'val'
 instance.get('_links')  // #=> undefined
+instance.links          // #=> _links: { self: { href: '/example', }, eg: { href: '/boo' } }
 ```
 
 Source Code
