@@ -3,53 +3,7 @@
 
   describe("HAL.Collection", function() {
     beforeEach(function() {
-      this.hal_response = {
-        _links: {
-          self: {
-            href: '/example',
-            eg: {
-              href: '/boo'
-            }
-          }
-        },
-        _embedded: {
-          items: [
-            {
-              _links: {
-                self: {
-                  href: '/item1'
-                }
-              },
-              _embedded: {
-                emb: {
-                  _links: {
-                    self: {
-                      href: '/foo'
-                    }
-                  }
-                }
-              },
-              item_prop: 'foo_val'
-            }, {
-              _links: {
-                self: {
-                  href: '/item2'
-                }
-              },
-              item_prop: 'foo_val'
-            }, {
-              _links: {
-                self: {
-                  href: '/item3'
-                }
-              },
-              item_prop: 'foo_val'
-            }
-          ]
-        },
-        prop: 'val',
-        other_prop: 'other_val'
-      };
+      this.hal_response = Helper.collection_response;
       return this.col = new HAL.Collection(this.hal_response);
     });
     describe("when instantiated", function() {
@@ -72,72 +26,7 @@
     describe("when reset with #fetch()", function() {
       beforeEach(function() {
         this.server = sinon.fakeServer.create();
-        this.updated_response = {
-          _links: {
-            self: {
-              href: '/example'
-            },
-            eg: {
-              href: '/test'
-            },
-            xyz: {
-              href: '/bla'
-            }
-          },
-          _embedded: {
-            items: [
-              {
-                _links: {
-                  self: {
-                    href: '/item1'
-                  }
-                },
-                _embedded: {
-                  emb: {
-                    _links: {
-                      self: {
-                        href: '/foo'
-                      }
-                    }
-                  }
-                },
-                item_prop: 'foo_val'
-              }, {
-                _links: {
-                  self: {
-                    href: '/item2'
-                  }
-                },
-                item_prop: 'foo_val'
-              }, {
-                _links: {
-                  self: {
-                    href: '/item3'
-                  }
-                },
-                item_prop: 'foo_val'
-              }, {
-                _links: {
-                  self: {
-                    href: '/item4'
-                  }
-                },
-                item_prop: 'foo_val'
-              }
-            ],
-            embed2: {
-              _links: {
-                self: {
-                  href: '/foo'
-                }
-              },
-              x: 'y'
-            }
-          },
-          prop: 'val',
-          other_prop: 'other_val',
-          additional: 'add'
-        };
+        this.updated_response = Helper.updated_collection_response;
         this.server.respondWith([
           200, {
             'Content-Type': 'application/hal+json'
@@ -164,72 +53,7 @@
     });
     return describe("when reset with #reset()", function() {
       beforeEach(function() {
-        return this.updated_response = {
-          _links: {
-            self: {
-              href: '/example'
-            },
-            eg: {
-              href: '/test'
-            },
-            xyz: {
-              href: '/bla'
-            }
-          },
-          _embedded: {
-            items: [
-              {
-                _links: {
-                  self: {
-                    href: '/item1'
-                  }
-                },
-                _embedded: {
-                  emb: {
-                    _links: {
-                      self: {
-                        href: '/foo'
-                      }
-                    }
-                  }
-                },
-                item_prop: 'foo_val'
-              }, {
-                _links: {
-                  self: {
-                    href: '/item2'
-                  }
-                },
-                item_prop: 'foo_val'
-              }, {
-                _links: {
-                  self: {
-                    href: '/item3'
-                  }
-                },
-                item_prop: 'foo_val'
-              }, {
-                _links: {
-                  self: {
-                    href: '/item4'
-                  }
-                },
-                item_prop: 'foo_val'
-              }
-            ],
-            embed2: {
-              _links: {
-                self: {
-                  href: '/foo'
-                }
-              },
-              x: 'y'
-            }
-          },
-          prop: 'val',
-          other_prop: 'other_val',
-          additional: 'add'
-        };
+        return this.updated_response = Helper.updated_collection_response;
       });
       describe("called with a full HAL document", function() {
         beforeEach(function() {

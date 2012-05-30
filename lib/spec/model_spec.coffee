@@ -1,17 +1,6 @@
 describe "HAL.Model", ->
   beforeEach ->
-    @hal_response =
-      _links:
-        self:
-          href: '/example'
-          eg:
-            href: '/boo'
-      _embedded:
-        foo:
-          _links: { self: { href: '/embedded' } }
-          foo_prop: 'foo_val'
-      prop: 'val'
-      other_prop: 'other_val'
+    @hal_response = Helper.model_response
     @model = new HAL.Model @hal_response
 
   describe "when instantiated", ->
@@ -34,21 +23,7 @@ describe "HAL.Model", ->
   describe "when reset with #fetch()", ->
     beforeEach ->
       @server = sinon.fakeServer.create()
-      @updated_response =
-        _links:
-          self:
-            href: '/example'
-            eg:
-              href: '/test'
-            xyz:
-              href: '/bla'
-        _embedded:
-          foo:
-            _links: { self: { href: '/embedded' } }
-            foo_prop: 'foo_val'
-        prop: 'val'
-        other_prop: 'other_val'
-        additional: 'add'
+      @updated_response = Helper.updated_model_response
       @server.respondWith [
         200
         { 'Content-Type': 'application/hal+json' }

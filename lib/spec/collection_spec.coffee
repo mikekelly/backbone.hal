@@ -1,29 +1,6 @@
 describe "HAL.Collection", ->
   beforeEach ->
-    @hal_response =
-      _links:
-        self:
-          href: '/example'
-          eg:
-            href: '/boo'
-      _embedded:
-        items:[
-          {
-            _links: { self: { href: '/item1' } }
-            _embedded: { emb: { _links: { self: { href: '/foo' } } } }
-            item_prop: 'foo_val'
-          }
-          {
-            _links: { self: { href: '/item2' } }
-            item_prop: 'foo_val'
-          }
-          {
-            _links: { self: { href: '/item3' } }
-            item_prop: 'foo_val'
-          }
-        ]
-      prop: 'val'
-      other_prop: 'other_val'
+    @hal_response = Helper.collection_response
     @col = new HAL.Collection @hal_response
 
   describe "when instantiated", ->
@@ -46,42 +23,7 @@ describe "HAL.Collection", ->
   describe "when reset with #fetch()", ->
     beforeEach ->
       @server = sinon.fakeServer.create()
-      @updated_response =
-        _links:
-          self:
-            href: '/example'
-          eg:
-            href: '/test'
-          xyz:
-            href: '/bla'
-        _embedded:
-          items:[
-            {
-              _links: { self: { href: '/item1' } }
-              _embedded: { emb: { _links: { self: { href: '/foo' } } } }
-              item_prop: 'foo_val'
-            }
-            {
-              _links: { self: { href: '/item2' } }
-              item_prop: 'foo_val'
-            }
-            {
-              _links: { self: { href: '/item3' } }
-              item_prop: 'foo_val'
-            }
-            {
-              _links: { self: { href: '/item4' } }
-              item_prop: 'foo_val'
-            }
-          ]
-          embed2:
-            _links:
-              self:
-                href: '/foo'
-            x: 'y'
-        prop: 'val'
-        other_prop: 'other_val'
-        additional: 'add'
+      @updated_response = Helper.updated_collection_response
       @server.respondWith [
         200
         { 'Content-Type': 'application/hal+json' }
@@ -108,42 +50,7 @@ describe "HAL.Collection", ->
 
   describe "when reset with #reset()", ->
     beforeEach ->
-      @updated_response =
-        _links:
-          self:
-            href: '/example'
-          eg:
-            href: '/test'
-          xyz:
-            href: '/bla'
-        _embedded:
-          items:[
-            {
-              _links: { self: { href: '/item1' } }
-              _embedded: { emb: { _links: { self: { href: '/foo' } } } }
-              item_prop: 'foo_val'
-            }
-            {
-              _links: { self: { href: '/item2' } }
-              item_prop: 'foo_val'
-            }
-            {
-              _links: { self: { href: '/item3' } }
-              item_prop: 'foo_val'
-            }
-            {
-              _links: { self: { href: '/item4' } }
-              item_prop: 'foo_val'
-            }
-          ]
-          embed2:
-            _links:
-              self:
-                href: '/foo'
-            x: 'y'
-        prop: 'val'
-        other_prop: 'other_val'
-        additional: 'add'
+      @updated_response = Helper.updated_collection_response
 
     describe "called with a full HAL document", ->
       beforeEach ->

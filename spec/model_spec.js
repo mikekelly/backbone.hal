@@ -3,28 +3,7 @@
 
   describe("HAL.Model", function() {
     beforeEach(function() {
-      this.hal_response = {
-        _links: {
-          self: {
-            href: '/example',
-            eg: {
-              href: '/boo'
-            }
-          }
-        },
-        _embedded: {
-          foo: {
-            _links: {
-              self: {
-                href: '/embedded'
-              }
-            },
-            foo_prop: 'foo_val'
-          }
-        },
-        prop: 'val',
-        other_prop: 'other_val'
-      };
+      this.hal_response = Helper.model_response;
       return this.model = new HAL.Model(this.hal_response);
     });
     describe("when instantiated", function() {
@@ -47,32 +26,7 @@
     return describe("when reset with #fetch()", function() {
       beforeEach(function() {
         this.server = sinon.fakeServer.create();
-        this.updated_response = {
-          _links: {
-            self: {
-              href: '/example',
-              eg: {
-                href: '/test'
-              },
-              xyz: {
-                href: '/bla'
-              }
-            }
-          },
-          _embedded: {
-            foo: {
-              _links: {
-                self: {
-                  href: '/embedded'
-                }
-              },
-              foo_prop: 'foo_val'
-            }
-          },
-          prop: 'val',
-          other_prop: 'other_val',
-          additional: 'add'
-        };
+        this.updated_response = Helper.updated_model_response;
         this.server.respondWith([
           200, {
             'Content-Type': 'application/hal+json'
