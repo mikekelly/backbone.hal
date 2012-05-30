@@ -7,10 +7,10 @@
   Helper.model_response = {
     _links: {
       self: {
-        href: '/example',
-        eg: {
-          href: '/boo'
-        }
+        href: '/example'
+      },
+      eg: {
+        href: '/boo'
       }
     },
     _embedded: {
@@ -30,13 +30,13 @@
   Helper.updated_model_response = {
     _links: {
       self: {
-        href: '/example',
-        eg: {
-          href: '/test'
-        },
-        xyz: {
-          href: '/bla'
-        }
+        href: '/example'
+      },
+      eg: {
+        href: '/test'
+      },
+      xyz: {
+        href: '/bla'
       }
     },
     _embedded: {
@@ -57,10 +57,10 @@
   Helper.collection_response = {
     _links: {
       self: {
-        href: '/example',
-        eg: {
-          href: '/boo'
-        }
+        href: '/example'
+      },
+      eg: {
+        href: '/boo'
       }
     },
     _embedded: {

@@ -4,8 +4,8 @@ Helper.model_response =
   _links:
     self:
       href: '/example'
-      eg:
-        href: '/boo'
+    eg:
+      href: '/boo'
   _embedded:
     foo:
       _links: { self: { href: '/embedded' } }
@@ -17,10 +17,10 @@ Helper.updated_model_response =
   _links:
     self:
       href: '/example'
-      eg:
-        href: '/test'
-      xyz:
-        href: '/bla'
+    eg:
+      href: '/test'
+    xyz:
+      href: '/bla'
   _embedded:
     foo:
       _links: { self: { href: '/embedded' } }
@@ -33,8 +33,8 @@ Helper.collection_response =
   _links:
     self:
       href: '/example'
-      eg:
-        href: '/boo'
+    eg:
+      href: '/boo'
   _embedded:
     items:[
       {
