@@ -6,7 +6,7 @@ Example Usage
 ============
 ``` javascript
 MyModel = HAL.Model.extend({
-  /* custom mehtods and properties go here */
+  /* usual custom methods and properties go here */
 });
 
 var instance = new MyModel({
