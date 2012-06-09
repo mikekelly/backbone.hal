@@ -1,6 +1,11 @@
-Backbone.Hypermedia
+Backbone.HAL
 ===================
-Replacement Model and Collection components which interop with the media type application/hal+json
+Replacement Model and Collection components which interop with the media type application/hal+json.
+
+application/hal+json is a media type for linking based on JSON, you can
+read more about it here:
+http://stateless.co/hal_specification.html
+http://tools.ietf.org/html/draft-kelly-json-hal-00
 
 Example Usage
 ============
