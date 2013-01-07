@@ -29,7 +29,7 @@ describe "HAL.Collection", ->
         { 'Content-Type': 'application/hal+json' }
         JSON.stringify @updated_response
       ]
-      @col.fetch()
+      @col.fetch({parse:false})
       @server.respond()
 
     afterEach ->
