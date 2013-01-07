@@ -36,9 +36,10 @@
 
       return items
 
-    reset: (obj, options) ->
+    reset: (obj, options = {}) ->
       # skip parsing if obj is an Array (i.e. reset items only)
       obj = @parse(_.clone obj) if not _.isArray(obj)
+      options.parse = false
       return super(obj, options)
 
     url: ->

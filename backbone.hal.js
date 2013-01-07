@@ -69,9 +69,13 @@
       };
 
       Collection.prototype.reset = function(obj, options) {
+        if (options == null) {
+          options = {};
+        }
         if (!_.isArray(obj)) {
           obj = this.parse(_.clone(obj));
         }
+        options.parse = false;
         return Collection.__super__.reset.call(this, obj, options);
       };
 
