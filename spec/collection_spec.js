@@ -13,6 +13,19 @@
       it("returns the correct URI from url() function", function() {
         return expect(this.col.url()).toEqual(this.hal_response._links.self.href);
       });
+      it("processes uri template with url() function", function() {
+        var col;
+        col = new HAL.Collection;
+        col.links.self = {
+          href: "/products{?name,product_line}",
+          templated: true
+        };
+        col.urlParameters = {
+          name: 'test',
+          product_line: 'prd'
+        };
+        return expect(col.url()).toEqual("/products?name=test&product_line=prd");
+      });
       it("sets links property of instance correctly", function() {
         return expect(this.col.links).toEqual(this.hal_response._links);
       });

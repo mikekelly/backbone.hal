@@ -10,6 +10,18 @@ describe "HAL.Collection", ->
     it "returns the correct URI from url() function", ->
       expect(@col.url()).toEqual @hal_response._links.self.href
 
+    it "processes uri template with url() function", ->
+      col = new HAL.Collection
+      col.links.self = {
+        href: "/products{?name,product_line}",
+        templated: true
+      }
+      col.urlParameters = {
+        name: 'test',
+        product_line: 'prd'
+      }
+      expect(col.url()).toEqual("/products?name=test&product_line=prd")
+
     it "sets links property of instance correctly", ->
       expect(@col.links).toEqual @hal_response._links
 

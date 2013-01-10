@@ -5,12 +5,27 @@
 
   (function(root, factory) {
     if (typeof define !== "undefined" && define !== null ? define.amd : void 0) {
-      return define(['backbone', 'underscore'], factory);
+      return define(['backbone', 'underscore', 'uritemplate'], factory, function(err) {
+        var failedId;
+        failedId = err.requireModules && err.requireModules[0];
+        if (failedId === "jquery") {
+          requirejs.undef(failedId);
+          return require(['backbone', 'underscore'], factory);
+        }
+      });
     } else {
-      return root.HAL = factory(Backbone, _);
+      return root.HAL = factory(Backbone, _, UriTemplate);
     }
-  })(this, function(Backbone, _) {
-    var Collection, Model;
+  })(this, function(Backbone, _, UriTemplate) {
+    var Collection, Model, processUriTemplate;
+    processUriTemplate = function(tmpl, params) {
+      var template;
+      if (!UriTemplate) {
+        return null;
+      }
+      template = UriTemplate.parse(tmpl);
+      return template.expand(params);
+    };
     Model = (function(_super) {
 
       __extends(Model, _super);
@@ -80,8 +95,12 @@
       };
 
       Collection.prototype.url = function() {
-        var _ref, _ref1;
-        return (_ref = this.links) != null ? (_ref1 = _ref.self) != null ? _ref1.href : void 0 : void 0;
+        var _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
+        if ((_ref = this.links) != null ? (_ref1 = _ref.self) != null ? _ref1.templated : void 0 : void 0) {
+          return processUriTemplate((_ref2 = this.links) != null ? (_ref3 = _ref2.self) != null ? _ref3.href : void 0 : void 0, this.urlParameters);
+        } else {
+          return (_ref4 = this.links) != null ? (_ref5 = _ref4.self) != null ? _ref5.href : void 0 : void 0;
+        }
       };
 
       return Collection;
