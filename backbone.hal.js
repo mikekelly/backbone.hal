@@ -5,14 +5,7 @@
 
   (function(root, factory) {
     if (typeof define !== "undefined" && define !== null ? define.amd : void 0) {
-      return define(['backbone', 'underscore', 'uritemplate'], factory, function(err) {
-        var failedId;
-        failedId = err.requireModules && err.requireModules[0];
-        if (failedId === "jquery") {
-          requirejs.undef(failedId);
-          return require(['backbone', 'underscore'], factory);
-        }
-      });
+      return define(['backbone', 'underscore', 'uritemplate'], factory);
     } else {
       return root.HAL = factory(Backbone, _, UriTemplate);
     }
@@ -20,6 +13,9 @@
     var Collection, Model, processUriTemplate;
     processUriTemplate = function(tmpl, params) {
       var template;
+      if (params == null) {
+        params = {};
+      }
       if (!UriTemplate) {
         return null;
       }

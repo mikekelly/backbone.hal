@@ -1,14 +1,9 @@
 # Support for async loading, adapted from https://github.com/umdjs/umd
 ((root, factory) ->
-  if define?.amd
-    define ['backbone', 'underscore', 'uritemplate'], factory, (err) ->
-      failedId = err.requireModules && err.requireModules[0]
-      if failedId == "jquery"
-        requirejs.undef failedId
-        require ['backbone', 'underscore'], factory
+  if define?.amd then define ['backbone', 'underscore', 'uritemplate'], factory
   else root.HAL = factory Backbone, _, UriTemplate
 ) this, (Backbone, _, UriTemplate) ->
-  processUriTemplate = (tmpl, params) ->
+  processUriTemplate = (tmpl, params = {}) ->
     if !UriTemplate then return null
     template = UriTemplate.parse tmpl
     template.expand params
@@ -53,7 +48,6 @@
 
     url: ->
       if @links?.self?.templated then processUriTemplate(@links?.self?.href, @urlParameters) else @links?.self?.href
-
 
   {
     Model: Model
