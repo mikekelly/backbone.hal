@@ -18,6 +18,9 @@
     url: ->
       @links?.self?.href || super()
 
+    isNew: ->
+      !@links?.self
+
   class Collection extends Backbone.Collection
     constructor: (obj, options) ->
       super @parse(_.clone obj), options

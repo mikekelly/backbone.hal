@@ -37,6 +37,11 @@
         return ((_ref = this.links) != null ? (_ref1 = _ref.self) != null ? _ref1.href : void 0 : void 0) || Model.__super__.url.call(this);
       };
 
+      Model.prototype.isNew = function() {
+        var _ref;
+        return !((_ref = this.links) != null ? _ref.self : void 0);
+      };
+
       return Model;
 
     })(Backbone.Model);

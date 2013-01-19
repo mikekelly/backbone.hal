@@ -20,6 +20,9 @@ describe "HAL.Model", ->
       expect([@model.get('prop'), @model.get('other_prop')]).
         toEqual [@hal_response.prop, @hal_response.other_prop]
 
+    it "returns false for isNew when self-link present", ->
+      expect(@model.isNew()).toEqual false
+
   describe "when reset with #fetch()", ->
     beforeEach ->
       @server = sinon.fakeServer.create()

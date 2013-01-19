@@ -19,8 +19,11 @@
       it("sets embedded property of instance correctly", function() {
         return expect(this.model.embedded).toEqual(this.hal_response._embedded);
       });
-      return it("sets normal properties up as expected", function() {
+      it("sets normal properties up as expected", function() {
         return expect([this.model.get('prop'), this.model.get('other_prop')]).toEqual([this.hal_response.prop, this.hal_response.other_prop]);
+      });
+      return it("returns false for isNew when self-link present", function() {
+        return expect(this.model.isNew()).toEqual(false);
       });
     });
     return describe("when reset with #fetch()", function() {
