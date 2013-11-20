@@ -23,7 +23,8 @@
 
   class Collection extends Backbone.Collection
     constructor: (obj, options) ->
-      super @parse(_.clone obj), options
+      obj = @parse(_.clone obj) if not _.isArray(obj)
+      super obj, options
 
     parse: (obj = {}) ->
       @links = obj._links || {}
