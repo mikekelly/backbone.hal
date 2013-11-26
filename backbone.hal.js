@@ -34,7 +34,7 @@
 
       Model.prototype.url = function() {
         var _ref, _ref1;
-        return ((_ref = this.links) != null ? (_ref1 = _ref.self) != null ? _ref1.href : void 0 : void 0) || Model.__super__.url.call(this);
+        return (this.urlRoot || "") + (((_ref = this.links) != null ? (_ref1 = _ref.self) != null ? _ref1.href : void 0 : void 0) || Model.__super__.url.call(this));
       };
 
       Model.prototype.isNew = function() {
@@ -86,7 +86,7 @@
 
       Collection.prototype.url = function() {
         var _ref, _ref1;
-        return (_ref = this.links) != null ? (_ref1 = _ref.self) != null ? _ref1.href : void 0 : void 0;
+        return (this.urlRoot || "") + ((_ref = this.links) != null ? (_ref1 = _ref.self) != null ? _ref1.href : void 0 : void 0);
       };
 
       return Collection;

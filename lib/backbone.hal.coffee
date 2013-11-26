@@ -16,7 +16,7 @@
       return attrs
 
     url: ->
-      @links?.self?.href || super()
+      (@urlRoot || "") + (@links?.self?.href || super())
 
     isNew: ->
       !@links?.self
@@ -46,7 +46,7 @@
       return super(obj, options)
 
     url: ->
-      @links?.self?.href
+      (@urlRoot || "") + @links?.self?.href
 
 
   {
