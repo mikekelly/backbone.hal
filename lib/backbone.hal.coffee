@@ -16,7 +16,10 @@
       return attrs
 
     url: ->
-      (@urlRoot || "") + (@links?.self?.href || super())
+      base = @baseUrl || "";
+      u = @links?.self?.href;
+      
+      if u? then return base + u else return super()
 
     isNew: ->
       !@links?.self
@@ -46,7 +49,7 @@
       return super(obj, options)
 
     url: ->
-      (@urlRoot || "") + @links?.self?.href
+      @links?.self?.href
 
 
   {
