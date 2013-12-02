@@ -30,8 +30,14 @@
       };
 
       Model.prototype.url = function() {
-        var _ref, _ref1;
-        return ((_ref = this.links) != null ? (_ref1 = _ref.self) != null ? _ref1.href : void 0 : void 0) || Model.__super__.url.call(this);
+        var base, u, _ref, _ref1;
+        base = this.baseUrl || "";
+        u = (_ref = this.links) != null ? (_ref1 = _ref.self) != null ? _ref1.href : void 0 : void 0;
+        if (u != null) {
+          return base + u;
+        } else {
+          return Model.__super__.url.call(this);
+        }
       };
 
       Model.prototype.isNew = function() {

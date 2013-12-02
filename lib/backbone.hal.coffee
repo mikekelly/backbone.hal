@@ -16,7 +16,10 @@
       return attrs
 
     url: ->
-      @links?.self?.href || super()
+      base = @baseUrl || "";
+      u = @links?.self?.href;
+      
+      if u? then return base + u else return super()
 
     isNew: ->
       !@links?.self
