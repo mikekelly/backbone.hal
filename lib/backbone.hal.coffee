@@ -4,8 +4,8 @@
   else root.HAL = factory Backbone, _
 ) this, (Backbone, _) ->
   class Model extends Backbone.Model
-    constructor: (attrs) ->
-      super @parse(_.clone attrs)
+    constructor: (attrs, options) ->
+      super @parse(_.clone attrs), options
 
     parse: (attrs = {}) ->
       @links = attrs._links || {}

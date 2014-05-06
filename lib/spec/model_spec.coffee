@@ -1,7 +1,8 @@
 describe "HAL.Model", ->
   beforeEach ->
     @hal_response = Helper.model_response
-    @model = new HAL.Model @hal_response
+    @collection = new HAL.Collection()
+    @model = new HAL.Model @hal_response, { collection: @collection }
 
   describe "when instantiated", ->
     it "strips out the _links and _embedded properties", ->
@@ -22,6 +23,9 @@ describe "HAL.Model", ->
 
     it "returns false for isNew when self-link present", ->
       expect(@model.isNew()).toEqual false
+
+    it "sets the collection from the Model options", ->
+      expect(@model.collection).toEqual @collection
 
   describe "when reset with #fetch()", ->
     beforeEach ->
